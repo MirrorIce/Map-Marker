@@ -53,7 +53,7 @@ class MainPage extends React.Component {
     }
     handleMap = () => {
         var self = this;
-        fetch("http://" + self.state.ip + ":3000/getlocation/?id=" + this.state.email+"&sd="+this.state.sd+"&ed="+this.state.ed, {
+        fetch("http://" + self.state.ip + ":5000/getlocation/?id=" + this.state.email+"&sd="+this.state.sd+"&ed="+this.state.ed, {
             mode: "cors",
             method: 'GET',
             headers: {

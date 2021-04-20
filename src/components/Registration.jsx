@@ -20,7 +20,7 @@ export default class Registration extends React.Component{
     createAccountHandler = () =>{
     
        console.log("Creating account");
-       fetch("http://localhost:3000/createaccount/",{
+       fetch("http://localhost:5000/createaccount/",{
             method:'POST',
             headers: {
                 'Accept': 'application/json',

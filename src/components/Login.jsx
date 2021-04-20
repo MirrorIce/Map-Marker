@@ -13,7 +13,7 @@ class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
-            ip: "192.168.43.241"
+            ip: "localhost"
         }
 
         this.loginHandler = this.loginHandler.bind(this)
@@ -33,7 +33,7 @@ class Login extends React.Component {
         //  console.log(this.props.setLoggedIn(false));
         //  console.log(this.props.setLoggedIn);
         var self = this;
-        fetch("http://" + this.state.ip + ":3000/login/", {
+        fetch("/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,12 +45,10 @@ class Login extends React.Component {
             credentials: "include"
         }).then(res => {
             if (res.status == 200) {
-                console.log(res);
-                self.props.setLoggedIn(true);
-                self.props.history.push('/mainpage');
+                console.log("OK");
             }
             else {
-                self.props.setLoggedIn(false);
+                console.log("NOK");
             }
         })
     };
@@ -73,9 +71,5 @@ class Login extends React.Component {
         );
     }
 }
-
-// Login.propTypes = {
-//     setLoggedIn: PropTypes.method
-// }
 
 export default Login;
