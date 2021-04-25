@@ -30,8 +30,6 @@ class Login extends React.Component {
     }
     loginHandler = (e) => {
         e.preventDefault();
-        //  console.log(this.props.setLoggedIn(false));
-        //  console.log(this.props.setLoggedIn);
         var self = this;
         fetch("/login", {
             method: 'POST',
@@ -45,7 +43,7 @@ class Login extends React.Component {
             credentials: "include"
         }).then(res => {
             if (res.status == 200) {
-                console.log("OK");
+
             }
             else {
                 console.log("NOK");
