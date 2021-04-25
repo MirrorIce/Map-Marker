@@ -1,0 +1,27 @@
+$mycolor: red;
+:root{
+    font-size:32px;
+}
+
+h3{
+    size: 1.5rem;
+}
+
+img{
+    width:33%;
+    height:33%;
+    margin:0 auto;
+}
+
+.loginContainer{
+    width:40%;
+    margin:auto;
+    size:1rem;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loginContainer > *{
+    margin-left:10px;
+}

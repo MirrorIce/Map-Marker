@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import "../style/login.css";
 
 
 
@@ -52,15 +53,13 @@ class Login extends React.Component {
     };
     render() {
         return (
-            <div style={{ width: "20%", margin: "auto" }}>
-                <h3 style={{ textAlign: "center" }}> Welcome</h3>
+            <div class = 'loginContainer'>
+                <img src = "/globe2d.png" />
+                <h3 style={{ textAlign: "center" }}> MTrack</h3>
                 <form onSubmit={this.loginHandler}>
                     <input style={{ width: "100%", margin: "0 auto" }} type="text" placeholder='Email' value={this.state.email} onChange={(e) => { this.handleMailInput(e) }} />
-                    <br></br>
                     <input style={{ width: "100%", margin: "0 auto" }} type="password" placeholder='Password' value={this.state.password} onChange={(e) => { this.handlePassInput(e) }} />
-                    <br></br>
-                    <br></br>
-                    <input type="submit" value="Login" style={{ margin: "0 auto", width: "40%", display: "block", backgroundColor: "white", border: "2px solid lightGray" }} />
+                    <input type="submit" value="Login" />
                     <p id="message"></p>
                 </form>
             </div>
