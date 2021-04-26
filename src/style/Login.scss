@@ -1,6 +1,17 @@
-$mycolor: red;
+$borderColor: hsl(208, 87%, 79%);
+$confirmColor: hsl(115, 87%, 79%);
+$alertColor: hsl(0, 87%, 79%);
+
+@keyframes rootOpacity{
+    from {opacity:0%;}
+    to   {opacity:100%;}
+
+}
 :root{
     font-size:32px;
+    animation-name:rootOpacity;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
 }
 
 h3{
@@ -8,20 +19,95 @@ h3{
 }
 
 img{
-    width:33%;
-    height:33%;
+    min-width:70px;
+    width:20%;
+    height:20%;
+    transition:.5s ease all;
+}
+form{
+    width:100%;
+}
+input:not([type='submit']){
+    max-width:600px;
+    width:100%;
     margin:0 auto;
+    padding:5px;
+    border-width: 0px 0px 0px 2px;
+    border-color: $borderColor;
+    border-style: solid;
+    transition:.2s ease all;
+}
+
+input:not([type='submit']):focus{
+    outline:none;
+    font-size:0.8rem;
+}
+
+span{
+    position:absolute;
+    border:1px solid $borderColor;
+    left:0;
+    width:0%;
+    padding:0;
+    transition:.4s ease all;
+  }
+
+.lowerBarEffect{
+    width:100%;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+input[type='submit']{
+    padding:10px;
+    background:$borderColor;
+    border:none;
+    color:white;
+    transition:.2s ease all;
+    font-size:0.7rem;
+}
+input[type='submit']:hover{
+    background:$confirmColor;
+    color:black;
 }
 
 .loginContainer{
     width:40%;
+    max-width:500px;
     margin:auto;
     size:1rem;
     display:flex;
     align-items: center;
     justify-content: space-between;
 }
-
 .loginContainer > *{
     margin-left:10px;
 }
+
+@media(max-width:600px)
+{
+    .loginContainer{
+        margin:0;
+        width:100%;
+        flex-direction:column;
+        margin-top:100px;
+    }
+    form{
+        width:80%;
+    }
+    .loginContainer > *{
+        margin-left:0px;
+    }
+
+    input:not([type='submit']){
+        margin-top:25px;
+        padding:10px;
+    }
+
+    input[type='submit']{
+        margin:0 auto;
+        margin-top:20px;
+    }
+    
+}
+

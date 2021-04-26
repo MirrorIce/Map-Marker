@@ -14,15 +14,44 @@ class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
-            ip: "localhost"
+            ip: "localhost",
+            loginMessage:"",
+            loginImageSrc:"./globe2d.png",
+            emailEffect:""
         }
 
         this.loginHandler = this.loginHandler.bind(this)
 
     }
+
+    resetText = () =>{
+        setTimeout(()=>{
+            this.setState({loginMessage:""});
+            this.setState({loginImageSrc:"./globe2d.png"});
+        },3000);
+    }
+
+
+    setMailEffect = (e) => {
+        e.preventDefault();
+        this.setState({emailEffect:"lowerBarEffect"});
+    }
+    unsetMailEffect = (e) => {
+        e.preventDefault();
+        this.setState({emailEffect:""});
+    }
     handleMailInput = (e) => {
         e.preventDefault();
         this.setState({ email: e.target.value });
+    }
+
+    setPassEffect = (e) => {
+        e.preventDefault();
+        this.setState({passEffect:"lowerBarEffect"});
+    }
+    unsetPassEffect = (e) => {
+        e.preventDefault();
+        this.setState({passEffect:""});
     }
     handlePassInput = (e) => {
         e.preventDefault();
@@ -44,23 +73,35 @@ class Login extends React.Component {
             credentials: "include"
         }).then(res => {
             if (res.status == 200) {
-
+                // this.setState({loginMessage:"Let's go!"});
+                this.setState({loginImageSrc:"./loginOk.png"});
+                this.resetText();
             }
             else {
-                console.log("NOK");
+                // this.setState({loginMessage:"Incorrect credentials! Try again!"});
+                this.setState({loginImageSrc:"./loginNok.png"});
+                this.resetText();
             }
         })
     };
     render() {
         return (
             <div class = 'loginContainer'>
-                <img src = "/globe2d.png" />
+                <img class = {this.state.loginImageClass} src = {this.state.loginImageSrc} />
                 <h3 style={{ textAlign: "center" }}> MTrack</h3>
                 <form onSubmit={this.loginHandler}>
-                    <input style={{ width: "100%", margin: "0 auto" }} type="text" placeholder='Email' value={this.state.email} onChange={(e) => { this.handleMailInput(e) }} />
-                    <input style={{ width: "100%", margin: "0 auto" }} type="password" placeholder='Password' value={this.state.password} onChange={(e) => { this.handlePassInput(e) }} />
+                    <div style={{position:"relative"}}>
+                        <input type="text" placeholder='Email' value={this.state.email} onClick = {(e) => {this.setMailEffect(e)}} onBlur = {(e) => {this.unsetMailEffect(e)}}  onChange={(e) => { this.handleMailInput(e) }} />
+                        <span class = {this.state.emailEffect}></span>
+                    </div>
+
+                    <div style={{position:"relative"}}>
+                        <input type="password" placeholder='Password' value={this.state.password} onClick = {(e) => {this.setPassEffect(e)}} onBlur = {(e) => {this.unsetPassEffect(e)}}  onChange={(e) => { this.handlePassInput(e) }} />
+                         <span class = {this.state.passEffect}></span>
+                    </div>
+                    
                     <input type="submit" value="Login" />
-                    <p id="message"></p>
+                    <p id="message">{this.state.loginMessage}</p>
                 </form>
             </div>
 
