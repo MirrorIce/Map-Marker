@@ -11,7 +11,7 @@ import Registration from './components/Registration.jsx';
 2) take the rest of the properties and use them
 */
 function PrivateRoute({component: Component, ...rest})
-{ console.log(rest.logged);
+{ 
   return(
     <Route
      {...rest}
@@ -34,6 +34,7 @@ class App extends Component {
   
 isLogged = async (e) =>
 {   let result = undefined;
+    let self = this;
     await fetch('/isLoggedIn',{
     method:'GET',
     headers: {
@@ -43,14 +44,16 @@ isLogged = async (e) =>
   }).then(function(response){
     if (response.status == 200)
     {
-      result = true;
+      return true;
     }
     else
     {
-      result = false;
+      return false;
     }
-  });
-  this.setState({logged:result});
+  }).then(function(result){
+    self.setState({logged:result});
+    return result;
+  }); 
 }
 
 componentDidMount(){
@@ -60,8 +63,8 @@ componentDidMount(){
   render() {
     return (
       <Switch>
-        <Route exact path = '/login'  render = {(props) => {return this.state.logged?<Redirect to='/home'/>:<Login/>}}  />
-        <Route exact path = '/create' component = {Registration} />
+        <Route exact path = '/login'  render = {(props) => {return this.state.logged?<Redirect to='/home'/>:<Login {...props} isLogged = {this.isLogged}/>}}  />
+        <Route exact path = '/register' component = {Registration} />
         <PrivateRoute logged = {this.state.logged} exact path = '/home' component={MainPage}    />
         <PrivateRoute logged = {this.state.logged} exact path = '/' component = {MainPage}></PrivateRoute>
       </Switch>

@@ -8,20 +8,42 @@ $alertColor: hsl(0, 87%, 79%);
 
 }
 :root{
+    margin-top:32px;
     font-size:32px;
     animation-name:rootOpacity;
     animation-duration:1s;
     animation-fill-mode: forwards;
+    height:100vh;
 }
-
+h1{
+    font-size:1rem;
+}
 h3{
-    size: 1.5rem;
+    font-size: 0.8rem;
 }
-
+p{
+    font-size: 0.5rem;
+    margin:0;
+    margin-top:4px;
+    &:last-child{
+        margin-bottom:32px;
+    }
+}
+a{
+    background:$borderColor;
+    color:white;
+    padding:10px;
+    text-decoration: none;
+    font-size:0.5rem;
+}
+.locationTitle{
+    margin:0;
+    margin-top:32px;
+}
 img{
     min-width:70px;
-    width:20%;
-    height:20%;
+    width:40%;
+    height:40%;
     transition:.5s ease all;
 }
 form{
@@ -36,77 +58,178 @@ input:not([type='submit']){
     border-color: $borderColor;
     border-style: solid;
     transition:.2s ease all;
-}
 
-input:not([type='submit']):focus{
-    outline:none;
-    font-size:0.8rem;
+    &:focus{
+        outline:none;
+        font-size:0.8rem;
+    }
 }
-
 span{
     position:absolute;
-    border:1px solid $borderColor;
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
+    border-color:$borderColor;
     left:0;
     width:0%;
     padding:0;
     transition:.4s ease all;
-  }
-
+}
 .lowerBarEffect{
     width:100%;
     padding-left:5px;
     padding-right:5px;
 }
-
 input[type='submit']{
     padding:10px;
     background:$borderColor;
     border:none;
     color:white;
     transition:.2s ease all;
-    font-size:0.7rem;
-}
-input[type='submit']:hover{
+    font-size:0.5rem;
+
+    &:hover{
     background:$confirmColor;
     color:black;
+    }
 }
-
-.loginContainer{
+.loginContainer, .registrationContainer{
     width:40%;
-    max-width:500px;
     margin:auto;
     size:1rem;
     display:flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
-.loginContainer > *{
+.loginContainer{
+    div{
+        width:100%;
+    }
+}
+.loginContainer > *, .registrationContainer > *{
     margin-left:10px;
+}
+
+.registrationContainer{
+    width:50%;
+    h3{
+        flex-grow:2;
+    }
+    form{
+        flex-grow:1;
+        width:100%;
+        flex-basis:25%;
+        margin:auto;
+    }
+    p{
+        flex-grow:4;
+    }
+}
+#message{
+    margin:0;
+    margin-left:15px;
+}
+#mainPageContent{
+    display:flex;
+    flex-direction:row-reverse;
+    width:100%;
+}
+#map{
+    flex-grow:2;
+    flex-basis:66%;
+    height:100vh;
+}
+#mapQueryFields{
+    flex-grow:1;
+    flex-basis:33%;
+    display:flex;
+    flex-direction:column;
+    p{
+        text-align:center;
+        font-size:0.4rem;
+    }
+    button{
+        width:100px;
+        padding:10px;
+        background:$borderColor;
+        border:none;
+        color:white;
+        transition:.2s ease all;
+        font-size:0.5rem;
+        margin:0 auto;
+    }
+    button:hover{
+        background:$confirmColor;
+        color:black;
+    }
+    input:not([type='submit']){
+        padding:0;
+        margin:0 auto;
+        width:40%;
+        padding-top:5px;
+        padding-bottom:5px;
+    }   
+    
+    button{
+        margin-top:32px;
+    }
+
+    input[type='text']{
+        margin-top:32px;
+    }
+
 }
 
 @media(max-width:600px)
 {
-    .loginContainer{
+    .loginContainer, .registrationContainer{
         margin:0;
         width:100%;
         flex-direction:column;
         margin-top:100px;
     }
+    .loginContainer{
+        div{
+            width:80%;
+        }
+    }
     form{
         width:80%;
     }
-    .loginContainer > *{
+    .loginContainer > *, .registrationContainer > *{
         margin-left:0px;
     }
-
-    input:not([type='submit']){
-        margin-top:25px;
-        padding:10px;
+    .registrationContainer{
+        form{
+            width:80%;
+            margin:0 auto;
+        }
     }
 
     input[type='submit']{
         margin:0 auto;
         margin-top:20px;
+    }
+
+    #mainPageContent{
+        display:flex;
+        flex-direction:column-reverse;
+        width:100%;
+    }
+    #map{
+        position:relative;
+        flex-grow:1;
+        flex-basis:66vh;
+        height:66vh;
+        width:100%;
+        margin-bottom:20px;
+    }
+    #mapQueryFields{
+        flex-grow:1;
+        flex-basis:33vh;
+
+        input:not([type='submit']){
+            width:60%;
+        }
     }
     
 }
